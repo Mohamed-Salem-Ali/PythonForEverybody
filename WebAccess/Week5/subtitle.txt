@@ -1,0 +1,62 @@
+So welcome to Chapter 13. We're going to talk about web services. And we've been talking about moving data
+using the request/response cycle and HTTP and urllib. Web services is really adding
+a layer of formalism on top of that. Where we're just being a little more
+formal about how we do this and basically, at some point we'll just
+switch from it's moving data back and forth to these are are APIs,
+application program interfaces. And so, like we've said before,
+this request/response cycle that was originally for documents and
+images, has been used for data. And we have been coming up with ways
+to move data in a way that really have nothing to do with humans viewing them,
+but instead have programs producing and consuming this data. And the basic idea is
+you have data in a program, and so we've got two programs here, and they're
+going to communicate across the Internet. So we might have a Python program
+that's producing the data. Maybe it's reading a database,
+maybe it's reading a file. Who knows what it is. But inside it has a Python data structure,
+like a dictionary. And we want to send that
+across the network. Okay, and so the network is not Python. The network is not Java. The network is a data, I mean it's
+data that's going to go across. And so we have worked out, over the years, what we call the Wire Protocol, or
+how the data is put on the wire, or how the data leaves one system, transits
+a network, and then enters another system. And in that destination system,
+it's not always Python. It could be another program. And so, perhaps, our Python dictionary in this other
+system needs to be a Java HashMap. And so, we can't say that we're going to
+send Python data across the network, and we can't say that we're going to
+send Java data across the network. We just have to send network on
+some format that we agree on. And so we have to argue about
+what the format is and say, okay we're going to do this, and this XML,
+which is one of the wire formats. And it's, okay we're going to take this
+data that's in a Python dictionary and we're going to, XML looks kind of
+like HTML and it has less thans and greater thans as tags. And we're going to send
+a person across the network, person that's going to have a name and
+a phone number. That's the data we're
+going to send across. And we're going to say,
+that's our wire format. It's not how Python thinks about it,
+it's not how Java thinks about it. It is an agreed on intermediate
+protocol that is just text, right? It's not internal memory. And the act of going from an internal
+representation on one computer out to a sort of interchange format
+is called serialization. And that has to do with the fact that,
+in the old days we had these wires, and we sent the data serially,
+across one character at a time. So it was taking, from the
+internal memory of the computer a format that we could sort of send one
+character at a time, character, character, character, character, character, so
+we called this a serialization format. And so, then the act of taking the data
+off of the wire and turning it into a new internal data
+structure, in the new environment, potentially in a very new language,
+is called de-serialization. So we take our internal structure,
+serialize it, send it across the network, then we receive it. We de-serialize it, and then we use it
+in this other programming language, in whatever structure makes sense,
+in that particular programming language. The two types of
+serialization formats that we're going to talk about are
+XML and JSON. And so those are the two. And XML's kind of like
+the older of the two, and JSON is the more modern of the two. XML is the more complex and, some would say,
+more rigorous of the two, and JSON is the lighter-weight version of it. So you take your Python dictionary,
+you produce JSON. You send JSON across the network
+as a string or a document, and then you receive the document, and then you turn it into whatever it is
+it's going to be on that far side. So that's the basic idea of
+agreeing on data formats. And so you argue here in the middle, we
+can argue, the Python people can come to the argument, the Java people, and the
+JavaScript people, they can all come and argue about what the best wire format is. And that kind of engineering of
+an interchange that is not particularly suited to any language better than any
+other language, is part of the argument of building these data oriented documents
+versus sort of human readable oriented  documents. So, the first thing we're
+going to talk about is XML. And, as the first of these two
+formats we're going to talk about.
